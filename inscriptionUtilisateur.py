@@ -1,4 +1,4 @@
-# test_inscription.py
+# test_inscriptionUtilisateur.py
 
 import pytest
 from unittest.mock import Mock
@@ -10,6 +10,9 @@ class Utilisateur:
     def __init__(self, email):
         self.email = email
 
+
+# db=None veut dire qu'on peut appeler la fonction sans BD
+# la fonction retourne un objet Utilisateur dont on peu lire l'email avec resultat.email.
 
 def inscriptionUtilisateur(email, motDePasse, db=None):
     """
@@ -33,6 +36,7 @@ def inscriptionUtilisateur(email, motDePasse, db=None):
         raise ValueError("Mot de passe trop court")
 
     # Vérification base de données simulée
+    # vérifie si l'email est déjà utilisé
     if db is not None and db.email_existe(email):
         raise ValueError("Email déjà utilisé")
 
